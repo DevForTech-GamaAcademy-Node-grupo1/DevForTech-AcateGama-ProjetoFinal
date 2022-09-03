@@ -1,0 +1,29 @@
+{
+  "name": "devfortech-gamaacate",
+  "version": "1.0.0",
+  "description": "Projeto final do programa Dev For Tech realizado pela Gama Academy em parceria com a ACATE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jefferson-dantonio/DevForTech-GamaAcate.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jefferson-dantonio/DevForTech-GamaAcate/issues"
+  },
+  "homepage": "https://github.com/jefferson-dantonio/DevForTech-GamaAcate#readme",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mysql8": "^2.17.3",
+    "sequelize": "^6.21.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  }
+}
