@@ -2,23 +2,24 @@ const Marca = require('../database/models/Marca');
 
 async function getMarcaById(id) {
   let marca = await Marca.findByPk(id);
-  return JSON.stringify(marca);
+  return marca;
 }
 
 async function getMarcaByName(nome) {
   let marca = await Marca.findOne({ where: { nome: nome } });
   console.log(JSON.stringify(marca));
-  return JSON.stringify(marca);
+  return marca;
 }
 
 async function getAllMarca() {
-  let marca = await Marca.findAll();
-  return JSON.stringify(marca);
+  let marcas = await Marca.findAll();
+  return marcas;
 }
 
-async function createMarca(marca) {
+async function createMarca(nome) {
+  console.log(nome);
   await Marca.create({
-    nome: marca.nome
+    nome: nome
   });
 }
 
