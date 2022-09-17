@@ -1,7 +1,7 @@
 const pedido_repository = require('../repositories/pedido-repository');
 
 async function createPedido(pedido) {
-  if (pedido_repository.getPedidoByName(pedido.nome)) {
+  if (pedido_repository.getPedidoById(pedido.id)) {
     console.log('pedido já existe');
     return;
   }
@@ -33,6 +33,15 @@ async function findPedidoById(id) {
 
 async function updatePedido(pedido) {
   pedido_repository.updatePedido(pedido);
+}
+
+async function findPedidoById(id) {
+  let pedido = pedido_repository.getPedidoById(id);
+  if (pedido) {
+    console.log('pedido encontrado');
+    return;
+  }
+  console.log('pedido não encontrado');
 }
 
 module.exports = pedido_repository;
