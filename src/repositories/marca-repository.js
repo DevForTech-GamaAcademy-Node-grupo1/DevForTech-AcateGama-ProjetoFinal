@@ -1,44 +1,39 @@
 const Marca = require('../database/models/Marca');
 
-async function getMarcaById(id) {
+exports.getMarcaById = async (id) => {
   let marca = await Marca.findByPk(id);
   return marca;
 }
 
-async function getMarcaByName(nome) {
+exports.getMarcaByName = async (nome) => {
   let marca = await Marca.findOne({ where: { nome: nome } });
   console.log(JSON.stringify(marca));
   return marca;
 }
 
-async function getAllMarca() {
+exports.getAllMarca = async () => {
   let marcas = await Marca.findAll();
   return marcas;
 }
 
-async function createMarca(nome) {
-  console.log(nome);
-  await Marca.create({
+exports.createMarca = async (nome) => {
+  Marca.create({
     nome: nome
+  }).then(marca => {
+    console.log('Marca criada.');
+  })
+  .catch((e) => {
+    console.log(e);
   });
 }
 
-async function updateMarca(marcaToUpdate) {
+exports.updateMarca = async (marcaToUpdate) => {
   let marca = await Marca.findByPk(marcaToUpdate.id);
   marca = marcaToUpdate;
   await marca.save();
 }
 
-async function deleteMarca(id) {
+exports.deleteMarca = async (id) => {
   let marca = await Marca.findByPk(id);
   await marca.destroy();
-}
-
-module.exports = {
-  getMarcaById,
-  getMarcaByName,
-  createMarca,
-  updateMarca,
-  deleteMarca,
-  getAllMarca
 }
