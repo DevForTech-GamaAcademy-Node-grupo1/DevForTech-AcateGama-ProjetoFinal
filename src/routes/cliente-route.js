@@ -8,7 +8,7 @@ router.put('/:id', controller.updateById);
 
 router.delete('/id/:id', controller.deleteById);
 
-router.delete('/nome/:nome', controller.deleteByName);
+router.delete('/email/:email', controller.deleteByEmail);
 
 router.get('/id/:id', controller.selectById);
 
