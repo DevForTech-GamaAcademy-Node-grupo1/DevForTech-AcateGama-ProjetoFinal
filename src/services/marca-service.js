@@ -28,14 +28,14 @@ async function deleteMarcaByName(nome) {
 async function findAllMarca() {
   let marcas = await marca_repository.getAllMarca();
   console.log(marcas);
-  return JSON.parse(JSON.stringify(marcas));
+  return marcas;
 }
 
 async function findMarcaById(id) {
   let marca = await marca_repository.getMarcaById(id);
   if (marca) {
     console.log('marca encontrado');
-    return JSON.parse(JSON.stringify(marca));
+    return marca;
   }
   console.log('marca não encontrado');
   return null;
@@ -45,7 +45,7 @@ async function findMarcaByName(nome) {
   let marca = await marca_repository.getMarcaByName(nome);
   if (marca) {
     console.log('marca encontrado');
-    return JSON.parse(JSON.stringify(marca));
+    return marca;
   }
   console.log('marca não encontrado');
   return null;

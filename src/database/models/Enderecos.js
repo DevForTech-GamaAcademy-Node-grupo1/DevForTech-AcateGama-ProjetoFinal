@@ -11,12 +11,12 @@ const Enderecos = connection.define('enderecos_clientes', {},
 Cliente.belongsToMany(Endereco, {
     through: { model: 'enderecos_clientes', unique: false },
     as: 'enderecos_clienteId',
-    foreignKey: 'ClienteId'
+    foreignKey: 'clienteId'
 });
 Endereco.belongsToMany(Cliente, {
     through: { model: 'enderecos_clientes', unique: false },
     as: 'enderecos_enderecoId',
-    foreignKey: 'EnderecoId'
+    foreignKey: 'enderecoId'
 });
 
 (async () => {
