@@ -1,4 +1,3 @@
-//const Modelo = require('../models/Modelo');
 const Modelo = require('../database/models/Modelo');
 
 async function getModeloById(id) {
@@ -38,8 +37,8 @@ async function deleteModelo(id) {
 module.exports = {
   getModeloById,
   getModeloByName,
+  getAllModelo,
   createModelo,
   updateModelo,
-  deleteModelo,
-  getAllModelo
+  deleteModelo
 }
