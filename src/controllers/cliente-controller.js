@@ -30,13 +30,13 @@ exports.updateById = async (req, res) => {
   }
 }
 
-exports.updateByName = async (req, res) => {
-    if (!(req.params.nome && !(isNaN(req.params.nome)))) {
+exports.updateByEmail = async (req, res) => {
+    if (!(req.params.email && !(isNaN(req.params.email)))) {
       res.status(400).json({ message: 'formato inválido' });
       return;
     }
     try {
-      cliente_service.updateByName(req.params);
+      cliente_service.updateByEmail(req.params);
       res.status(200).json({ message: 'cliente atualizado' });
     }
     catch (e) {
@@ -60,13 +60,13 @@ exports.deleteById = async (req, res) => {
   }
 }
 
-exports.deleteByName = async (req, res) => {
-  if (!(req.params.nome != '' && (typeof (req.params.nome) === 'string'))) {
+exports.deleteByEmail = async (req, res) => {
+  if (!(req.params.email != '' && (typeof (req.params.email) === 'string'))) {
     res.status(400).json({ message: 'formato inválido' });
     return;
   }
   try {
-    cliente_service.deleteClienteByName(req.params.nome);
+    cliente_service.deleteClienteByEmail(req.params.email);
     res.status(200).json({ message: 'cliente deletado' });
   }
   catch (e) {

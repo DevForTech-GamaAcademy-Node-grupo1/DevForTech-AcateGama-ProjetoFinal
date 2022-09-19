@@ -1,11 +1,11 @@
 const cliente_repository = require('../repositories/cliente-repository');
 
-async function createCliente(nome) {
-  if (await cliente_repository.getClienteByName(nome) != null) {
+async function createCliente(cliente) {
+  if (await cliente_repository.getClienteByEmail(cliente.email) != null) {
     console.log('cliente já existe');
     return;
   }
-  await cliente_repository.createCliente(nome);
+  await cliente_repository.createCliente(cliente);
 }
 
 async function deleteClienteById(id) {
@@ -16,8 +16,8 @@ async function deleteClienteById(id) {
   console.log('Cliente não encontrado');
 }
 
-async function deleteClienteByName(nome) {
-  let cliente = await cliente_repository.getClienteByName(nome);
+async function deleteClienteByEmail(email) {
+  let cliente = await cliente_repository.getClienteByEmail(email);
   if (cliente) {
     await cliente_repository.deleteCliente(cliente.id);
     return;
@@ -78,7 +78,7 @@ async function updateCliente(cliente) {
 module.exports = {
   createCliente,
   deleteClienteById,
-  deleteClienteByName,
+  deleteClienteByEmail,
   findClienteByEmail,
   findClienteByCPF,
   findAllCliente,
