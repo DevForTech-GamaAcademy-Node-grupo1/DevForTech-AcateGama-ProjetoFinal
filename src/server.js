@@ -23,15 +23,19 @@ const router = express.Router();
 const indexRoute = require('./routes/index-route');
 const produtoRoute = require('./routes/produto-route');
 const marcaRoute = require('./routes/marca-route');
+const contatoRoute = require('./routes/contato-route');
 const enderecoRoute = require('./routes/endereco-route');
 const clienteRoute = require('./routes/cliente-route');
+
 
 //Carrega as Rotas
 app.use('/', indexRoute);
 app.use('/produto', produtoRoute);
 app.use('/marcas', marcaRoute);
+app.use("/contato", contatoRoute);
 app.use('/endereco', enderecoRoute);
 app.use('/cliente', clienteRoute);
+
 
 app.listen(port, function () {
     console.log(`app listening on port ${port}`)
