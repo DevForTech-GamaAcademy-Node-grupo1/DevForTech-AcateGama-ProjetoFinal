@@ -41,8 +41,7 @@ exports.getByClientId = async (id) => {
 
 exports.update = async (enderecoToUpdate) => {
   let endereco = await Endereco.findByPk(enderecoToUpdate.id);
-  endereco = enderecoToUpdate;
-  await endereco.save();
+  await endereco.update(enderecoToUpdate);
 }
 
 exports.delete = async (id) => {

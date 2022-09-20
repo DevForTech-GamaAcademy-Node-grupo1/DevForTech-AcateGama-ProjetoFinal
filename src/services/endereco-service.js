@@ -1,18 +1,21 @@
 const endereco_repository = require('../repositories/endereco-repository');
+const cliente_repository = require('../repositories/cliente-repository');
 
 exports.create = async (endereco, clienteId) => {
+  if (!(await cliente_repository.getClienteById(clienteId))) {
+    console.log('Cliente nao encontrado');
+    throw 'Cliente não encontrado';
+  }
   await endereco_repository.create(endereco, clienteId);
   console.log('Endereco criado');
 }
 
 exports.delete = async (id) => {
-  let endereco = await endereco_repository.getById(id);
-  if (endereco) {
-    console.log(endereco);
-    await endereco_repository.delete(id);
-    return;
+  if (!(await endereco_repository.getById(id))) {
+    console.log('Endereço não encontrado');
+    throw 'Endereço não encontrado';
   }
-  console.log('Endereco não encontrado');
+  await endereco_repository.delete(id);
 }
 
 exports.findAll = async () => {
@@ -25,20 +28,26 @@ exports.findById = async (id) => {
   let endereco = await endereco_repository.getById(id);
   if (endereco) {
     console.log('Endereco encontrado');
-    console.log(endereco);
     return endereco;
   }
   console.log('Endereco não encontrado');
-  return null;
+  throw 'Endereco não encontrado';
 }
 
 exports.findByClienteId = async (id) => {
   let enderecos = await endereco_repository.getByClientId(id);
   //Sem o índice, ele retorna dois arrays com o mesmo coteúdo
+  if (enderecos[0].length <= 0) {
+    throw 'Nenhum endereço encontrado';
+  }
   console.log(enderecos[0]);
-  return;
+  return enderecos[0];
 };
 
 exports.update = async (endereco) => {
+  if (!(await endereco_repository.getById(id))) {
+    console.log('Endereço não encontrado');
+    throw 'Endereço não encontrado';
+  }
   await endereco_repository.update(endereco);
 }
