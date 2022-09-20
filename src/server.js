@@ -12,11 +12,15 @@ const router = express.Router();
 const indexRoute = require('./routes/index-route');
 const productRoute = require('./routes/product-route');
 const marcaRoute = require('./routes/marca-route');
+const contatoRoute = require('./routes/contato-route');
+
 
 //Carrega as Rotas
 app.use('/', indexRoute);
 app.use('/products', productRoute);
 app.use('/marcas', marcaRoute);
+app.use("/contato", contatoRoute);
+
 
 app.listen(port, function () {
     console.log(`app listening on port ${port}`)

@@ -6,5 +6,4 @@ module.exports = {
     host: process.env.APP_DB_HOST,
     dialect: process.env.APP_DB_DIALECT,
     requestTimeout: 100000,
-    query: { raw: true }
 };
