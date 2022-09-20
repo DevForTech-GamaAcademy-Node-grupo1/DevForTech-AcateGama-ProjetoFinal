@@ -1,17 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/endereco-controller');
+const cliehteAuth = require('../middlewares/clienteAuth');
+const adminAuth = require('../middlewares/adminAuth');
 
-router.post('/', controller.create);
+router.post('/', cliehteAuth, controller.create);
 
-router.put('/:id', controller.update);
+router.put('/:id', cliehteAuth, controller.update);
 
-router.delete('/:id', controller.delete);
+router.delete('/:id', cliehteAuth, controller.delete);
 
-router.get('/:id', controller.selectById);
+router.get('/:id', cliehteAuth, controller.selectById);
 
-router.get('/cliente/:id', controller.selectByClienteId);
+router.get('/cliente/:id', cliehteAuth, controller.selectByClienteId);
 
-router.get('/', controller.selectAll);
+router.get('/', adminAuth, controller.selectAll);
 
 module.exports = router;

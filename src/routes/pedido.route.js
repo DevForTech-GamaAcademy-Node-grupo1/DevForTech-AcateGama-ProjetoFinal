@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/pedido-controller');
+const cliehteAuth = require('../middlewares/clienteAuth');
+const adminAuth = require('../middlewares/adminAuth');
 
-router.post('/', controller.create);
+router.post('/', cliehteAuth, controller.create);
 
-router.put('/:id', controller.updateById);
+router.put('/:id', adminAuth, controller.updateById);
 
-router.delete('/id/:id', controller.deleteById);
+router.delete('/id/:id', adminAuth, controller.deleteById);
 
-router.get('/id/:id', controller.selectById);
+router.get('/id/:id', cliehteAuth, controller.selectById);
 
-router.get('/', controller.selectAll);
+router.get('/', adminAuth, controller.selectAll);
 
 module.exports = router;

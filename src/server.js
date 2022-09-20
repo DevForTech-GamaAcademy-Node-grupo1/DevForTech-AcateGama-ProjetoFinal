@@ -4,8 +4,6 @@ const app = express();
 const port = process.env.APP_PORT || 3333;
 const http = require('http');
 const session = require('express-session');
-const clienteAuth = require('./middlewares/clienteAuth');
-const adminAuth = require('./middlewares/adminAuth');
 
 app.use(express.json());
 app.use(session({
