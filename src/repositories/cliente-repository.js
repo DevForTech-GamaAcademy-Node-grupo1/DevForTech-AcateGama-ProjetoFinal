@@ -5,12 +5,6 @@ async function getClienteById(id) {
   return cliente;
 }
 
-async function getClienteByName(nome) {
-  let cliente = await Cliente.findOne({ where: { nome: nome } });
-  console.log(JSON.stringify(cliente));
-  return cliente;
-}
-
 async function getClienteByEmail(email) {
     let cliente = await Cliente.findOne({ where: { email: email } });
     console.log(JSON.stringify(cliente));
@@ -28,10 +22,13 @@ async function getAllCliente() {
   return clientes;
 }
 
-async function createCliente(nome) {
-  console.log(nome);
+async function create(cliente) {
   await Cliente.create({
-    nome: nome
+    email: cliente.email,
+    senha: cliente.senha,
+    nome: cliente.nome,
+    cpf: cliente.cpf,
+    permissao: cliente.permissao
   });
 }
 
@@ -48,10 +45,9 @@ async function deleteCliente(id) {
 
 module.exports = {
   getClienteById,
-  getClienteByName,
   getClienteByEmail,
   getClienteByCPF,
-  createCliente,
+  create,
   updateCliente,
   deleteCliente,
   getAllCliente

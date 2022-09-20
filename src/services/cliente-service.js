@@ -1,11 +1,17 @@
 const cliente_repository = require('../repositories/cliente-repository');
+const bcrypt = require('bcryptjs');
 
-async function createCliente(nome) {
-  if (await cliente_repository.getClienteByName(nome) != null) {
+async function create(cliente) {
+  if (await cliente_repository.getClienteByEmail(cliente.email) != null) {
     console.log('cliente já existe');
     return;
   }
-  await cliente_repository.createCliente(nome);
+  let salt = bcrypt.genSaltSync(10);
+  cliente.senha = bcrypt.hashSync(cliente.senha, salt);
+  if (!cliente.permissao) {
+    cliente.permissao = 0;
+  }
+  await cliente_repository.create(cliente);
 }
 
 async function deleteClienteById(id) {
@@ -16,8 +22,18 @@ async function deleteClienteById(id) {
   console.log('Cliente não encontrado');
 }
 
-async function deleteClienteByName(nome) {
-  let cliente = await cliente_repository.getClienteByName(nome);
+async function authenticateByEmail(clienteToAuthenticate) {
+  let cliente = await cliente_repository.getClienteByEmail(clienteToAuthenticate.email);
+  if (!(cliente) || !(bcrypt.compareSync(clienteToAuthenticate.senha, cliente.senha))) {
+    console.log('E-mail ou senha incorretos');
+    throw 'E-mail ou senha incorretos';
+  }
+  console.log('Cliente logado');
+  return JSON.parse(JSON.stringify(cliente));
+}
+
+async function deleteClienteByEmail(email) {
+  let cliente = await cliente_repository.getClienteByEmail(email);
   if (cliente) {
     await cliente_repository.deleteCliente(cliente.id);
     return;
@@ -76,13 +92,14 @@ async function updateCliente(cliente) {
 }
 
 module.exports = {
-  createCliente,
+  create,
   deleteClienteById,
-  deleteClienteByName,
+  deleteClienteByEmail,
   findClienteByEmail,
   findClienteByCPF,
   findAllCliente,
   findClienteById,
   findClienteByName,
-  updateCliente
+  updateCliente,
+  authenticateByEmail
 }
