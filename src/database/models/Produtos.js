@@ -26,7 +26,7 @@ Produto.belongsToMany(Pedido, {
 });
 
 (async () => {
-    const flag = process.env.APP_MODEL_FORCE == 'false' ? false : true;
+    const flag = process.env.APP_MODEL_FORCE == "false" ? false : true;
     await Produtos.sync({ force: flag });
 })();
 

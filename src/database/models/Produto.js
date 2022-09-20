@@ -1,9 +1,13 @@
 const Sequelize = require('sequelize');
 const connection = require('../index');
 const Marca = require('./Marca');
-const Modelo = require('./Modelo');
+
 
 const Produto = connection.define('produto', {
+    nome:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     valor: {
         type: Sequelize.DOUBLE,
         allowNull: false
@@ -12,10 +16,14 @@ const Produto = connection.define('produto', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    modelo:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }
+    
 });
 
 Produto.belongsTo(Marca);
-Produto.belongsTo(Modelo);
 
 (async () => {
     const flag = process.env.APP_MODEL_FORCE == 'false' ? false : true;
