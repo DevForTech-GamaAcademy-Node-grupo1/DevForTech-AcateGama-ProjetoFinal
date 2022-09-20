@@ -4,12 +4,17 @@ async function getPedidosById(id) {
     let pedidos = await Pedidos.findByPk(id);
     return JSON.stringify(pedidos);
   }
-  
-  async function getPedidosByName(nome) {
-    let pedidos = await Pedidos.findOne({ where: { nome: nome } });
-    console.log(JSON.stringify(pedidos));
+
+  async function getPedidosByClienteId(clienteId) {
+    let pedidos = await Pedidos.findOne(clienteId);
     return JSON.stringify(pedidos);
   }
+
+  async function getPedidosByPedidoId(pedidoId) {
+    let pedidos = await Pedidos.findOne(pedidoId);
+    return JSON.stringify(pedidos);
+  }
+  
   
   async function getAllPedidos() {
     let pedidos = await Pedidos.findAll();
@@ -18,8 +23,8 @@ async function getPedidosById(id) {
   
   async function createPedidos(pedidos) {
     await Pedidos.create({
-      nome: pedidos.nome,
-      descricao: pedidos.descricao
+      pedidos_clienteId: pedidos.pedidos_clienteId,
+      pedidos_pedidosId: pedidos.pedidos_pedidosId
     });
   }
   
@@ -36,7 +41,8 @@ async function getPedidosById(id) {
   
   module.exports = {
     getPedidosById,
-    getPedidosByName,
+    getPedidosByClienteId,
+    getPedidosByPedidoId,
     createPedidos,
     updatePedidos,
     deletePedidos,

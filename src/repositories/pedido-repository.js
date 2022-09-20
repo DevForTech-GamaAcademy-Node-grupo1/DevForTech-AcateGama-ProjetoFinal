@@ -5,12 +5,6 @@ async function getPedidoById(id) {
     return JSON.stringify(pedido);
   }
   
-  async function getPedidoByName(nome) {
-    let pedido = await Pedido.findOne({ where: { nome: nome } });
-    console.log(JSON.stringify(pedido));
-    return JSON.stringify(pedido);
-  }
-  
   async function getAllPedido() {
     let pedidos = await Pedido.findAll();
     return JSON.stringify(pedidos);
@@ -18,8 +12,9 @@ async function getPedidoById(id) {
   
   async function createPedido(pedido) {
     await Pedido.create({
-      nome: pedido.nome,
-      descricao: pedido.descricao
+      valor_total: pedido.valor_total,
+      descricao: pedido.descricao,
+      status_geral: pedido.status_geral
     });
   }
   
@@ -36,7 +31,6 @@ async function getPedidoById(id) {
   
   module.exports = {
     getPedidoById,
-    getPedidoByName,
     createPedido,
     updatePedido,
     deletePedido,
