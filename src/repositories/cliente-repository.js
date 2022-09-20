@@ -22,8 +22,7 @@ async function getAllCliente() {
   return clientes;
 }
 
-async function createCliente(cliente) {
-  console.log(email);
+async function create(cliente) {
   await Cliente.create({
     email: cliente.email,
     senha: cliente.senha,
@@ -48,7 +47,7 @@ module.exports = {
   getClienteById,
   getClienteByEmail,
   getClienteByCPF,
-  createCliente,
+  create,
   updateCliente,
   deleteCliente,
   getAllCliente

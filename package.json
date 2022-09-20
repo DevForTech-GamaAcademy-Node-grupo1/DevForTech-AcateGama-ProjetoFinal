@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/jefferson-dantonio/DevForTech-GamaAcate#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
     "mysql8": "^2.17.3",
     "sequelize": "^6.21.4"
