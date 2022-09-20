@@ -16,8 +16,10 @@ router.get('/nome/:nome', controller.selectByName);
 
 router.get('/', controller.selectAll);
 
-router.get('/email/:email', controller.electByEmail);
+router.get('/email/:email', controller.selectByEmail);
 
 router.get('/cpf/:cpf', controller.selectByCPF);
+
+router.post('/authenticate', controller.authenticate);
 
 module.exports = router;
