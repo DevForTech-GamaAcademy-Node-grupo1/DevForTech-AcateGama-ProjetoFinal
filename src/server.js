@@ -4,8 +4,9 @@ const app = express();
 const port = process.env.APP_PORT || 3333;
 const http = require('http');
 const path = require("path");
+app.use(express.static('public'));
 
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine','ejs');
 
@@ -36,7 +37,9 @@ app.get('/', (req,res) => {
         {nome: "Tenis", modelo: "nike", valor: 69}
     ]
 
-    //let produtos  = app.use('/', produtoRoute);
+    // let produtos  = app.get('/produto',(req,res) => {
+    //     req.
+    // });
 
     res.render('../views/home', {
         products: produtos
