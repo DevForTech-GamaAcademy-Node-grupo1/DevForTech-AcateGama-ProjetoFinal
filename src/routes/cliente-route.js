@@ -22,4 +22,6 @@ router.get('/cpf/:cpf', controller.selectByCPF);
 
 router.post('/authenticate', controller.authenticate);
 
+router.get('/logout', controller.logout);
+
 module.exports = router;
