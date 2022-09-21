@@ -41,7 +41,7 @@ async function updateCliente(clienteToUpdate) {
 
 async function deleteCliente(id) {
   let cliente = await Cliente.findByPk(id);
-  await cliente.destroy();
+  await cliente.destroy();  
 }
 
 module.exports = {
