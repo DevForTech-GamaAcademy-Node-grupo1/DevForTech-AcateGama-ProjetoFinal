@@ -198,3 +198,13 @@ exports.authenticate = async (req, res) => {
     res.status(400).json({ message: 'formato inválido' });
   }
 }
+
+exports.logout = async (req, res) => {
+  if (req.session.cliente) {
+    req.session.cliente = undefined;
+    res.status(200).json({ message: 'Sessão do cliente destruida' });
+  }
+  else {
+    res.status(404).json({ message: 'Cliente não está logado' });
+  }
+}
