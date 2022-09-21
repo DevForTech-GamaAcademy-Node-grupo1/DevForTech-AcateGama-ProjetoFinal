@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
     return;
   }
   try {
-    marca_service.createMarca(req.body.nome);
+    //marca_service.createMarca(req.body.nome);
     res.status(200).json({ message: 'marca criada' });
   }
   catch (e) {

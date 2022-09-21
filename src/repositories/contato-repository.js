@@ -1,30 +1,30 @@
 const Contato = require('../database/models/Contato');
 
 async function getContatoById(id) {
-  let contato = await Contato.findByPk(id);
+  let contato = await Contato.findByPk(id, { attributes: ["id","numero"], raw :true });
   return JSON.stringify(contato);
 }
 
 async function getAllContato() {
-  let contatos = await Contato.findAll();
+  let contatos = await Contato.findAll({ attributes: ["id","numero"], raw :true });
   return JSON.stringify(contatos);
 }
 
 async function createContato(contato) {
-  await Contato.create({
+ return  await Contato.create({
     numero: contato.numero,
   });
 }
 
 async function updateContato(contatoToUpdate) {
+  console.log(contatoToUpdate)
   let contato = await Contato.findByPk(contatoToUpdate.id);
-  contato = contatoToUpdate;
-  await contato.save();
+  console.log(contato)
+  await contato.update(contatoToUpdate)
 }
 
 async function deleteContato(id) {
-  let contato = await Contato.findByPk(id);
-  await contato.destroy();
+  await Contato.destroy({ where:{id:id} });
 }
 
 module.exports = {
