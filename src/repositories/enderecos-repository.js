@@ -1,4 +1,4 @@
-const Enderecos = require('../database/models/Enderecos');
+const { Enderecos } = require('../database/models/index');
 
 exports.create = async (endereco, clienteId) => {
   Enderecos.create({

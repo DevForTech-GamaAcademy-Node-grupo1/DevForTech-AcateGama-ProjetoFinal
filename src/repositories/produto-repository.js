@@ -1,5 +1,4 @@
-const Produto = require('../database/models/Produto');
-const Marca = require('../database/models/Marca');
+const { Marca, Produto } = require('../database/models/index');
 
 async function getProdutoById(id) {
     let produto = await Produto.findByPk(id);

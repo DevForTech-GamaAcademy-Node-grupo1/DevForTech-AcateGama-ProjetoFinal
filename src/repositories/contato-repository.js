@@ -1,36 +1,40 @@
-const Contato = require('../database/models/Contato');
+const { Contato, Contatos } = require('../database/models/index');
 
-async function getContatoById(id) {
+exports.getById = async (id) => {
   let contato = await Contato.findByPk(id, { attributes: ["id","numero"], raw :true });
   return JSON.stringify(contato);
 }
 
-async function getAllContato() {
+exports.getAll = async () => {
   let contatos = await Contato.findAll({ attributes: ["id","numero"], raw :true });
   return JSON.stringify(contatos);
 }
 
-async function createContato(contato) {
- return  await Contato.create({
-    numero: contato.numero,
-  });
+exports.create = async (contato, clienteId) => {
+  Contato.create({
+    numero: contato.numero
+  })
+    .then(contato => {
+      Contatos.create({
+        clienteId: clienteId,
+        contatoId: contato.id
+      });
+      console.log('contato criado');
+    })
+    .catch(e => {
+      console.log(e);
+      throw e;
+    });
 }
 
-async function updateContato(contatoToUpdate) {
-  console.log(contatoToUpdate)
+exports.updateContato = async (contatoToUpdate) => {
   let contato = await Contato.findByPk(contatoToUpdate.id);
-  console.log(contato)
+  if (!contato) {
+    throw 'Contato não encontrado.'
+  }
   await contato.update(contatoToUpdate)
 }
 
-async function deleteContato(id) {
-  await Contato.destroy({ where:{id:id} });
-}
-
-module.exports = {
-  getContatoById,
-  getAllContato,
-  createContato,
-  updateContato,
-  deleteContato
+exports.deleteById = async (id) => {
+  await Contato.destroy({ where: { id: id } });
 }

@@ -1,8 +1,8 @@
 const cliente_repository = require('../repositories/cliente-repository');
 const bcrypt = require('bcryptjs');
 
-async function create(cliente) {
-  if (await cliente_repository.getClienteByEmail(cliente.email) != null) {
+exports.create = async (cliente) => {
+  if (await cliente_repository.getByEmail(cliente.email) != null) {
     console.log('cliente já existe');
     return;
   }
@@ -14,16 +14,16 @@ async function create(cliente) {
   await cliente_repository.create(cliente);
 }
 
-async function deleteClienteById(id) {
-  if (await cliente_repository.getClienteById(id)) {
-    await cliente_repository.deleteCliente(id);
+exports.deleteById = async (id) => {
+  if (await cliente_repository.getById(id)) {
+    await cliente_repository.deleteById(id);
     return;
   }
   console.log('Cliente não encontrado');
 }
 
-async function authenticateByEmail(clienteToAuthenticate) {
-  let cliente = await cliente_repository.getClienteByEmail(clienteToAuthenticate.email);
+exports.authenticateByEmail = async (clienteToAuthenticate) => {
+  let cliente = await cliente_repository.getByEmail(clienteToAuthenticate.email);
   if (!(cliente) || !(bcrypt.compareSync(clienteToAuthenticate.senha, cliente.senha))) {
     console.log('E-mail ou senha incorretos');
     throw 'E-mail ou senha incorretos';
@@ -32,74 +32,61 @@ async function authenticateByEmail(clienteToAuthenticate) {
   return JSON.parse(JSON.stringify(cliente));
 }
 
-async function deleteClienteByEmail(email) {
-  let cliente = await cliente_repository.getClienteByEmail(email);
+exports.deleteByEmail = async (email) => {
+  let cliente = await cliente_repository.getByEmail(email);
   if (cliente) {
-    await cliente_repository.deleteCliente(cliente.id);
+    await cliente_repository.deleteById(cliente.id);
     return;
   }
   console.log('Cliente não encontrado');
 }
 
-async function findAllCliente() {
-  let clientes = await cliente_repository.getAllCliente();
+exports.findAll = async ()  => {
+  let clientes = await cliente_repository.getAll();
   console.log(clientes);
   return JSON.parse(JSON.stringify(clientes));
 }
 
-async function findClienteById(id) {
-  let cliente = await cliente_repository.getClienteById(id);
+exports.findById  = async (id) => {
+  let cliente = await cliente_repository.getById(id);
   if (cliente) {
     console.log('cliente encontrado');
     return JSON.parse(JSON.stringify(cliente));
   }
   console.log('cliente não encontrado');
-  return null;
+  throw {'message' : 'cliente não encontrado'};
 }
 
-async function findClienteByName(nome) {
-  let cliente = await cliente_repository.getClienteByName(nome);
+exports.findByName = async (nome) => {
+  let cliente = await cliente_repository.getByName(nome);
   if (cliente) {
     console.log('cliente encontrado');
     return JSON.parse(JSON.stringify(cliente));
   }
   console.log('cliente não encontrado');
-  return null;
+  throw { 'message': 'cliente não encontrado' };
 }
 
-async function findClienteByEmail(email) {
-    let cliente = await cliente_repository.getClienteByEmail(email);
+exports.findByEmail = async (email) => {
+    let cliente = await cliente_repository.getByEmail(email);
     if (cliente) {
       console.log('cliente encontrado');
       return JSON.parse(JSON.stringify(cliente));
     }
     console.log('cliente não encontrado');
-    return null;
+    throw { 'message': 'cliente não encontrado' };
 }
 
-async function findClienteByCPF(cpf) {
-    let cliente = await cliente_repository.getClienteByCPF(cpf);
+exports.findByCPF = async (cpf)  => {
+    let cliente = await cliente_repository.getByCPF(cpf);
     if (cliente) {
       console.log('cliente encontrado');
       return JSON.parse(JSON.stringify(cliente));
     }
     console.log('cliente não encontrado');
-    return null;
+    throw { 'message': 'cliente não encontrado' };
 }
 
-async function updateCliente(cliente) {
-  await cliente_repository.updateCliente(cliente);
-}
-
-module.exports = {
-  create,
-  deleteClienteById,
-  deleteClienteByEmail,
-  findClienteByEmail,
-  findClienteByCPF,
-  findAllCliente,
-  findClienteById,
-  findClienteByName,
-  updateCliente,
-  authenticateByEmail
+exports.updateById = async (cliente) => {
+  await cliente_repository.updateById(cliente);
 }

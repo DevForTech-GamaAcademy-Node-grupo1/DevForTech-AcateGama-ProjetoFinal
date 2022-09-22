@@ -1,4 +1,4 @@
-const Pedidos = require('../database/models/Pedidos');
+const { Pedidos } = require('../database/models/index');
 
 async function getPedidosById(id) {
     let pedidos = await Pedidos.findByPk(id);
