@@ -36,8 +36,8 @@ exports.deleteById = async (req, res) => {
     res.status(400).json({ message: 'formato inválido' });
     return;
   }
-    await pagamento_service.deletePedidoById(req.params.id).then(()=>{
-        res.status(200).json({ message: 'pedido deletada' });
+    await pagamento_service.deletePagamentoById(req.params.id).then(()=>{
+        res.status(200).json({ message: 'pagamento deletada' });
     }).catch(e =>{
         console.log(e);
         res.status(500).json({ message: 'Alguma coisa deu errado' ,error: e});
