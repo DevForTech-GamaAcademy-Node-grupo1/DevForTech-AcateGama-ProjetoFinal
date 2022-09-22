@@ -20,6 +20,8 @@ app.use(session({
     },
 }));
 
+app.use(express.json());
+app.use(express.urlencoded());
 const server = http.createServer(app);
 const router = express.Router();
 
