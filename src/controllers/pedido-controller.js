@@ -9,10 +9,7 @@ exports.create = async (req, res) => {
   pedido.enderecoId = req.body.enderecoId;
   produto.id = req.body.id;
   produto.quantidade = req.body.quantidade;
-  console.log(pedido);
-  console.log(produto);
-  //pedido_service.create(pedido, produto, req.session.cliente.id)
-  pedido_service.create(pedido, produto, 6)
+  pedido_service.create(pedido, produto, req.session.cliente.id)
     .then(() => {
       res.status(200).json({ message: 'pedido criado' });
     })
@@ -24,7 +21,7 @@ exports.create = async (req, res) => {
 
 exports.updateById = async (req, res) => {
   let pedido = {};
-  pedido.id = req.body.id;
+  pedido.id = req.params.id;
   pedido.status_geral = req.body.status;
   
   pedido_service.updatePedido(pedido)
@@ -50,20 +47,20 @@ exports.deleteById = async (req, res) => {
 
 exports.selectAll = async (req, res) => {
   try {
-    res.status(200).json(await pedido_service.findAll());
+    res.status(200).json(await pedido_service.getAll());
   }
   catch (e) {
     console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
+    res.status(500).json(e);
   }
 }
 
 exports.selectById = async (req, res) => {
   try {
-    res.status(200).json(await pedido_service.findById(req.params.id));
+    res.status(200).json(await pedido_service.getById(req.params.id));
   }
   catch (e) {
     console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
+    res.status(500).json(e);
   }
 }

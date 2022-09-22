@@ -30,7 +30,7 @@ const Produtos = connection.define('produtos_pedido', {
 
 (async () => {
     const flag = process.env.APP_MODEL_FORCE == "false" ? false : true;
-    await Produtos.sync({ force: flag });
+    await Produtos.sync({ force: false });
 })();
 
 module.exports = Produtos;

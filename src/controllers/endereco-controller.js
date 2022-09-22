@@ -1,22 +1,5 @@
 const endereco_service = require('../services/endereco-service');
 
-function _validaEndereco(endereco) {
-  return !Object.keys(endereco).some(el => {
-    if (el == 'numero' || el == 'cep') {
-      if (endereco[el] == '' || isNaN(endereco[el])) {
-        console.log(`${el}:${endereco[el]} não é um número`);
-        return true;
-      }
-    }
-    else if (el != 'complemento') {
-      if (endereco[el] == '' || !(typeof (endereco[el]) === 'string')) {
-        console.log(`${el}:${endereco[el]} não é uma string`);
-        return true;
-      }
-    }
-  });
-}
-
 exports.create = async (req, res) => {
   let endereco = {};
   endereco.rua = req.body.rua;

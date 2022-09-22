@@ -6,15 +6,13 @@ const Pedido = require('./Pedido');
 const Pedidos = connection.define('pedidos_cliente', {
     clienteId: {
         type: Sequelize.INTEGER,
-        primaryKey: true,
         references: {
             model: Cliente,
             key: "id"
         }
     },
-    PedidoId: {
+    pedidoId: {
         type: Sequelize.INTEGER,
-        primaryKey: true,
         references: {
             model: Pedido,
             key: "id"
@@ -27,7 +25,7 @@ const Pedidos = connection.define('pedidos_cliente', {
 
 (async () => {
     const flag = process.env.APP_MODEL_FORCE == 'false' ? false : true;
-    await Pedidos.sync({ force: flag });
+    await Pedidos.sync({ force: false });
 })();
 
 module.exports = Pedidos;
