@@ -8,9 +8,9 @@ router.post('/', controller.create);
 
 router.put('/:id', controller.updateById);
 
-router.delete('/id/:id', controller.deleteById);
+router.delete('/:id', controller.deleteById);
 
-router.get('/id/:id', controller.selectById);
+router.get('/:id', controller.selectById);
 
 router.get('/', controller.selectAll);
 

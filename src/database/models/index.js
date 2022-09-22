@@ -46,36 +46,36 @@ Endereco.belongsToMany(Cliente, {
 Cliente.belongsToMany(Pedido, {
   through: { model: 'pedidos_cliente', unique: false },
   as: 'pedidos_clienteId',
-  foreignKey: 'ClienteId'
+  foreignKey: 'clienteId'
 });
 Pedido.belongsToMany(Cliente, {
   through: { model: 'pedidos_cliente', unique: false },
   as: 'pedidos_pedidosId',
-  foreignKey: 'PedidoId'
+  foreignKey: 'pedidoId'
 });
 
 //Relação cliente x produtos
 Cliente.belongsToMany(Produto, {
   through: { model: 'favoritos', unique: false },
   as: 'favoritos_clienteId',
-  foreignKey: 'ClienteId'
+  foreignKey: 'clienteId'
 });
 Produto.belongsToMany(Cliente, {
   through: { model: 'favoritos', unique: false },
   as: 'favoritos_produtoId',
-  foreignKey: 'ProdutoId'
+  foreignKey: 'produtoId'
 });
 
 //Relação pedido x produtos
 Pedido.belongsToMany(Produto, {
   through: { model: 'produtos_pedido', unique: false },
   as: 'produtos_pedidoId',
-  foreignKey: 'PedidoId'
+  foreignKey: 'pedidoId'
 });
 Produto.belongsToMany(Pedido, {
   through: { model: 'produtos_pedido', unique: false },
   as: 'produtos_produtoId',
-  foreignKey: 'ProdutoId'
+  foreignKey: 'produtoId'
 });
 
 module.exports = {
