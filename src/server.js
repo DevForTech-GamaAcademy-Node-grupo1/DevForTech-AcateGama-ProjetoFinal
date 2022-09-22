@@ -31,6 +31,7 @@ const pedidoRoute = require('./routes/pedido.route');
 app.get('/', (req, res) => {
     res.status(200).json({ message: 'oi' });
 });
+const pagamentoRoute = require('./routes/pagamento-route');
 
 //Carrega as Rotas
 app.use('/', indexRoute);
@@ -40,6 +41,7 @@ app.use('/marcas', marcaRoute);
 app.use('/contato', contatoRoute);
 app.use('/endereco', enderecoRoute);
 app.use('/pedido', pedidoRoute);
+app.use('/pagamento', pagamentoRoute)
 
 app.listen(port, function () {
     console.log(`app listening on port ${port}`)
