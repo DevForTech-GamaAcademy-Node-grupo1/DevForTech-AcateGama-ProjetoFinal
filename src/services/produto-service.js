@@ -12,7 +12,7 @@ exports.createProduto = async (produto) => {
     })
     .catch(e => {
       console.log(e);
-      throw { message: "produto já existe!" };
+      throw { message: e };
     });
   await produto_repository.createProduto(produto);
 }

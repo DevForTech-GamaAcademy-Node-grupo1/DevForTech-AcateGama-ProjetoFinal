@@ -21,7 +21,7 @@ app.use(session({
 }));
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }))
 const server = http.createServer(app);
 const router = express.Router();
 
@@ -43,8 +43,6 @@ app.use('/contato', contatoRoute);
 app.use('/endereco', enderecoRoute);
 app.use('/cliente', clienteRoute);
 app.use('/pedido', pedidoRoute);
-
-
 
 app.get('/sobre', (req,res) => {
     res.render('../views/about');
@@ -85,7 +83,6 @@ app.get('/pedidos-pagina', (req,res) => {
 app.get('/clientes-pagina', (req,res) => {
     res.render('../views/clients');
 });
-
 
 app.listen(port, function () {
     console.log(`app listening on port ${port}`)
