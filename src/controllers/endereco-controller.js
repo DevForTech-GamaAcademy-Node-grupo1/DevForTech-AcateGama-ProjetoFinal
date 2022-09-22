@@ -18,89 +18,56 @@ function _validaEndereco(endereco) {
 }
 
 exports.create = async (req, res) => {
-  if (req.body.clienteId == '' || isNaN(req.body.clienteId)) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  else {
-    let endereco = {};
-    endereco.rua = req.body.rua;
-    endereco.numero = req.body.numero;
-    endereco.bairro = req.body.bairro;
-    endereco.complemento = req.body.complemento;
-    endereco.cidade = req.body.cidade;
-    endereco.estado = req.body.estado;
-    endereco.cep = req.body.cep;
-    
-    if (_validaEndereco(endereco)) {
-      endereco_service.create(endereco, req.body.clienteId)
-        .then(() => {
-          res.status(200).json({ message: 'Endereco criado' });
-        })
-        .catch(e => {
-          console.log(e);
-          res.status(500).json({ message: e });
-        });      
-    }
-    else {
-      res.status(400).json({ message: 'formato inválido' });
-      return;
-    }
-  }
+  let endereco = {};
+  endereco.rua = req.body.rua;
+  endereco.numero = req.body.numero;
+  endereco.bairro = req.body.bairro;
+  endereco.complemento = req.body.complemento;
+  endereco.cidade = req.body.cidade;
+  endereco.estado = req.body.estado;
+  endereco.cep = req.body.cep;
+
+  endereco_service.create(endereco, req.session.cliente.id)
+    .then(() => {
+      res.status(200).json({ message: 'Endereco criado.' });
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).json({ message: e });
+    });      
 }
 
 exports.update = async (req, res) => {
-  if (req.params.id == '' || isNaN(req.params.id)) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  else {
-    let endereco = {};
-    endereco.id = req.params.id;
-    endereco.rua = req.body.rua;
-    endereco.numero = req.body.numero;
-    endereco.bairro = req.body.bairro;
-    endereco.complemento = req.body.complemento;
-    endereco.cidade = req.body.cidade;
-    endereco.estado = req.body.estado;
-    endereco.cep = req.body.cep;
+  let endereco = {};
 
-    if (_validaEndereco(endereco)) {
-      endereco_service.update(endereco)
-        .then(() => {
-          res.status(200).json({ message: 'Endereco atualizado' });
-        })
-        .catch(e => {
-          console.log(e);
-          res.status(500).json({ message: e });
-        });
-    }
-    else {
-      res.status(400).json({ message: 'formato inválido' });
-      return;
-    }
-  }
+  endereco.id = req.params.id;
+  req.body.rua != '' ? endereco.rua = req.body.rua : '';
+  req.body.numero != '' ? endereco.numero = req.body.numero : '';
+  req.body.bairro != '' ? endereco.bairro = req.body.bairro : '';
+  req.body.complemento != '' ? endereco.complemento = req.body.complemento : '';
+  req.body.cidade != '' ? endereco.cidade = req.body.cidade : '';
+  req.body.estado != '' ? endereco.estado = req.body.estado : '';
+  req.body.cep != '' ? endereco.cep = req.body.cep : '';
+  
+  endereco_service.updateEndereco(endereco)
+    .then(() => {
+      res.status(200).json({ message: 'Endereco atualizado' });
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).json({ message: e });
+    });
 }
 
 exports.delete = async (req, res) => {
-  if (!(req.params.id && !(isNaN(req.params.id)))) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  try {
-    endereco_service.delete(req.params.id)
-      .then(() => {
-        res.status(200).json({ message: 'endereco deletado' });
-      })
-      .catch(e => {
-        console.log(e);
-        res.status(500).json({ message: e });
-      });
-  }
-  catch (e) {
-    console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
-  }
+  endereco_service.deleteById(req.params.id)
+    .then(() => {
+      res.status(200).json({ message: 'endereco deletado' });
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).json({ message: e });
+    });
 }
 
 exports.selectAll = async (req, res) => {
@@ -114,43 +81,23 @@ exports.selectAll = async (req, res) => {
 }
 
 exports.selectById = async (req, res) => {
-  if (!(req.params.id && !(isNaN(req.params.id)))) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  try {
-    endereco_service.findById(req.params.id)
-      .then((endereco) => {
-        res.status(200).json(endereco);
-      })
-      .catch(e => {
-        console.log(e);
-        res.status(500).json({ message: e });
-      });
-  }
-  catch (e) {
-    console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
-  }
+  endereco_service.findById(req.params.id)
+    .then((endereco) => {
+      res.status(200).json(endereco);
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).json({ message: e });
+    });
 }
 
 exports.selectByClienteId = async (req, res) => {
-  if (!(req.params.id && !(isNaN(req.params.id)))) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  try {
-    endereco_service.findByClienteId(req.params.id)
-      .then((enderecos) => {
-        res.status(200).json(enderecos);
-      })
-      .catch(e => {
-        console.log(e);
-        res.status(500).json({ message: e });
-      });
-  }
-  catch (e) {
-    console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
-  }
+  endereco_service.findByClienteId(req.params.id)
+    .then((enderecos) => {
+      res.status(200).json(enderecos);
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).json({ message: e });
+    });
 }

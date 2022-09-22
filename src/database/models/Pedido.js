@@ -15,9 +15,14 @@ const Pedido = connection.define('pedido', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    enderecoId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: Endereco,
+            key: 'id'
+        }
+    }
 });
-
-Pedido.belongsTo(Endereco);
 
 (async () => {
     const flag = process.env.APP_MODEL_FORCE == 'false' ? false : true;

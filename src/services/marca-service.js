@@ -1,66 +1,56 @@
 const marca_repository = require('../repositories/marca-repository');
 
-async function createMarca(nome) {
-  if (await marca_repository.getMarcaByName(nome) != null) {
+exports.create = async (nome) => {
+  if (await marca_repository.getByName(nome)) {
     console.log('marca já existe');
-    return;
+    throw { message: 'marca já existe' };
   }
-  await marca_repository.createMarca(nome);
+  await marca_repository.create(nome);
 }
 
-async function deleteMarcaById(id) {
-  if (await marca_repository.getMarcaById(id)) {
-    await marca_repository.deleteMarca(id);
+exports.deleteById = async (id) => {
+  if (await marca_repository.getById(id)) {
+    await marca_repository.deleteById(id);
     return;
   }
   console.log('Marca não encontrado');
 }
 
-async function deleteMarcaByName(nome) {
-  let marca = await marca_repository.getMarcaByName(nome);
+exports.deleteByName = async (nome) => {
+  let marca = await marca_repository.getByName(nome);
   if (marca) {
-    await marca_repository.deleteMarca(marca.id);
+    await marca_repository.deleteById(marca.id);
     return;
   }
   console.log('Marca não encontrado');
 }
 
-async function findAllMarca() {
-  let marcas = await marca_repository.getAllMarca();
+exports.findAll = async () => {
+  let marcas = await marca_repository.getAll();
   console.log(marcas);
   return marcas;
 }
 
-async function findMarcaById(id) {
-  let marca = await marca_repository.getMarcaById(id);
+exports.findById = async (id) => {
+  let marca = await marca_repository.getById(id);
   if (marca) {
     console.log('marca encontrado');
     return marca;
   }
   console.log('marca não encontrado');
-  return null;
+  throw { 'message': 'marca não encontrado' };
 }
 
-async function findMarcaByName(nome) {
-  let marca = await marca_repository.getMarcaByName(nome);
+exports.findByName = async (nome) => {
+  let marca = await marca_repository.getByName(nome);
   if (marca) {
     console.log('marca encontrado');
     return marca;
   }
   console.log('marca não encontrado');
-  return null;
+  throw { 'message': 'marca não encontrado' };
 }
 
-async function updateMarca(marca) {
+exports.updateMarca = async (marca) => {
   await marca_repository.updateMarca(marca);
-}
-
-module.exports = {
-  createMarca,
-  deleteMarcaById,
-  deleteMarcaByName,
-  findAllMarca,
-  findMarcaById,
-  findMarcaByName,
-  updateMarca
 }

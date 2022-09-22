@@ -1,8 +1,6 @@
-const Contatos = require('../database/models/Contatos');
+const { Contatos } = require('../database/models/index');
 
-
-
-async function getAllContatosByClienteId(clienteId) {
+exports.getAllContatosByClienteId = async (clienteId) => {
   let contatos = await Contatos.findAll({
     where: {
       ClienteId: clienteId
@@ -11,7 +9,7 @@ async function getAllContatosByClienteId(clienteId) {
   return JSON.stringify(contatos);
 }
 
-async function getAllContatosByContatoId(contatoId) {
+exports.getAllContatosByContatoId = async (contatoId) => {
   let contatos = await Contatos.findAll({
     where: {
       contatoId: contatoId
@@ -20,7 +18,7 @@ async function getAllContatosByContatoId(contatoId) {
   return JSON.stringify(contatos);
 }
 
-async function getContatos(contato) {
+exports.getContatos = async (contato) => {
   let contatos = await Contatos.findOne({
     where: {
       clienteId: contato.clienteId,
@@ -31,12 +29,12 @@ async function getContatos(contato) {
   return JSON.stringify(contatos);
 }
 
-async function getAllContatos() {
+exports.getAllContatos = async () => {
   let contatos = await Contatos.findAll();
   return JSON.stringify(contatos);
 }
 
-async function createContatos(contatos) {
+exports.create = async (contatos) => {
   console.log('createContatos ', contatos);
   await Contatos.create({
     ClienteId: contatos.clienteId,
@@ -44,9 +42,7 @@ async function createContatos(contatos) {
   });
 }
 
-
-
-async function deleteContatos(contato) {
+exports.deleteContatos = async (contato) => {
   let contatos = await Contatos.findOne({
     where: {
       clienteId: contato.clienteId,
@@ -54,15 +50,4 @@ async function deleteContatos(contato) {
     }
   });
   await contato.destroy();
-}
-
-
-
-module.exports = {
-  getAllContatosByClienteId,
-  getAllContatosByContatoId,
-  getContatos,
-  getAllContatos,
-  createContatos,
-  deleteContatos
 }

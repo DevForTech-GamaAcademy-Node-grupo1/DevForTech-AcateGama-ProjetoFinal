@@ -2,7 +2,7 @@ const endereco_repository = require('../repositories/endereco-repository');
 const cliente_repository = require('../repositories/cliente-repository');
 
 exports.create = async (endereco, clienteId) => {
-  if (!(await cliente_repository.getClienteById(clienteId))) {
+  if (!(await cliente_repository.getById(clienteId))) {
     console.log('Cliente nao encontrado');
     throw 'Cliente não encontrado';
   }
@@ -10,12 +10,12 @@ exports.create = async (endereco, clienteId) => {
   console.log('Endereco criado');
 }
 
-exports.delete = async (id) => {
+exports.deleteById = async (id) => {
   if (!(await endereco_repository.getById(id))) {
     console.log('Endereço não encontrado');
     throw 'Endereço não encontrado';
   }
-  await endereco_repository.delete(id);
+  await endereco_repository.deleteById(id);
 }
 
 exports.findAll = async () => {
@@ -44,10 +44,10 @@ exports.findByClienteId = async (id) => {
   return enderecos[0];
 };
 
-exports.update = async (endereco) => {
-  if (!(await endereco_repository.getById(id))) {
+exports.updateEndereco = async (endereco) => {
+  if (!(await endereco_repository.getById(endereco.id))) {
     console.log('Endereço não encontrado');
     throw 'Endereço não encontrado';
   }
-  await endereco_repository.update(endereco);
+  await endereco_repository.updateEndereco(endereco);
 }

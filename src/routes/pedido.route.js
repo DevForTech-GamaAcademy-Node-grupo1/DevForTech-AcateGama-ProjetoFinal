@@ -4,14 +4,14 @@ const controller = require('../controllers/pedido-controller');
 const cliehteAuth = require('../middlewares/clienteAuth');
 const adminAuth = require('../middlewares/adminAuth');
 
-router.post('/', cliehteAuth, controller.create);
+router.post('/', controller.create);
 
-router.put('/:id', adminAuth, controller.updateById);
+router.put('/:id', controller.updateById);
 
-router.delete('/id/:id', adminAuth, controller.deleteById);
+router.delete('/id/:id', controller.deleteById);
 
-router.get('/id/:id', cliehteAuth, controller.selectById);
+router.get('/id/:id', controller.selectById);
 
-router.get('/', adminAuth, controller.selectAll);
+router.get('/', controller.selectAll);
 
 module.exports = router;

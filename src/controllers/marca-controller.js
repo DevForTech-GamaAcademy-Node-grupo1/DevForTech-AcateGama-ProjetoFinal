@@ -1,72 +1,61 @@
 const marca_service = require('../services/marca-service');
 
 exports.create = async (req, res) => {
-  if (!(req.body.nome != '' && (typeof (req.body.nome) === 'string'))) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  try {
-    //marca_service.createMarca(req.body.nome);
-    res.status(200).json({ message: 'marca criada' });
-  }
-  catch (e) {
-    console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
-  }
+  marca_service.create(req.body.nome)
+    .then(() => {
+      res.status(200).json({ message: 'marca criada' });
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).json(e);
+    });
 }
 
 exports.updateById = async (req, res) => {
-  if (!(req.params.id && !(isNaN(req.params.id)))) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  try {
-    marca_service.updateById(req.params);
-    res.status(200).json({ message: 'marca atualiza' });
-  }
-  catch (e) {
-    console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
-  }
+  let marca = {};
+  marca.id = req.params.id;
+  marca.nome = req.body.nome;
+  marca_service.updateMarca(marca)
+    .then(() => {
+      res.status(200).json({ message: 'marca atualizada' });
+    })
+    .catch (e => {
+      console.log(e);
+      res.status(500).json(e);
+    });
 }
 
 exports.deleteById = async (req, res) => {
-  if (!(req.params.id && !(isNaN(req.params.id)))) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  try {
-    await marca_service.deleteMarcaById(req.params.id);
-    res.status(200).json({ message: 'marca deletada' });
-  }
-  catch (e) {
-    console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
-  }
+  
+  marca_service.deleteById(req.params.id)
+    .then(() => {
+      res.status(200).json({ message: 'marca deletada' });
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).json(e);
+    });
 }
 
 exports.deleteByName = async (req, res) => {
-  if (!(req.params.nome != '' && (typeof (req.params.nome) === 'string'))) {
-    res.status(400).json({ message: 'formato inválido' });
-    return;
-  }
-  try {
-    marca_service.deleteMarcaByName(req.params.nome);
-    res.status(200).json({ message: 'marca deletada' });
-  }
-  catch (e) {
-    console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
-  }
+
+  marca_service.deleteByName(req.params.nome)
+    .then(() => {
+      res.status(200).json({ message: 'marca deletada' });
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(500).json(e);
+    });
 }
 
 exports.selectAll = async (req, res) => {
   try {
-    res.status(200).json(await marca_service.findAllMarca());
+    res.status(200).json(await marca_service.findAll());
   }
   catch (e) {
     console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
+    res.status(500).json(e);
   }
 }
 
@@ -77,11 +66,11 @@ exports.selectById = async (req, res) => {
     return;
   }
   try {
-    res.status(200).json(await marca_service.findMarcaById(req.params.id));
+    res.status(200).json(await marca_service.findById(req.params.id));
   }
   catch (e) {
     console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
+    res.status(500).json(e);
   }
 }
 
@@ -92,10 +81,10 @@ exports.selectByName = async (req, res) => {
     return;
   }
   try {
-    res.status(200).json(await marca_service.findMarcaByName(req.params.nome));
+    res.status(200).json(await marca_service.findByName(req.params.nome));
   }
   catch (e) {
     console.log(e);
-    res.status(500).json({ message: 'Alguma coisa deu errado' });
+    res.status(500).json(e);
   }
 }

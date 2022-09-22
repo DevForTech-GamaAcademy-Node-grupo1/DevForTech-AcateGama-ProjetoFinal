@@ -1,22 +1,28 @@
 const connection = require('../index');
-
+const Sequelize = require('sequelize');
 const Cliente = require('./Cliente');
 const Produto = require('./Produto');
 
-const Favoritos = connection.define('favoritos', {},
+const Favoritos = connection.define('favoritos', {
+    clienteId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        references: {
+            model: Cliente,
+            key: "id"
+        }
+    },
+    produtoId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        references: {
+            model: Produto,
+            key: "id"
+        }
+    }
+},
   {  
   timestamps: false,
-});
-
-Cliente.belongsToMany(Produto, {
-    through: { model: 'favoritos', unique: false },
-    as: 'favoritos_clienteId',
-    foreignKey: 'ClienteId'
-});
-Produto.belongsToMany(Cliente, {
-    through: { model: 'favoritos', unique: false },
-    as: 'favoritos_produtoId',
-    foreignKey: 'ProdutoId'
 });
 
 (async () => {

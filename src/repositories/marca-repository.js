@@ -1,25 +1,36 @@
-const Marca = require('../database/models/Marca');
+const { Marca } = require('../database/models/index');
 
-exports.getMarcaById = async (id) => {
+exports.getById = async (id) => {
   let marca = await Marca.findByPk(id);
   return marca;
 }
 
-exports.getMarcaByName = async (nome) => {
+exports.getByName = async (nome) => {
   let marca = await Marca.findOne({ where: { nome: nome } });
-  console.log(JSON.stringify(marca));
+  if (!marca) {
+    return null;
+  }
+  console.log(marca);
   return marca;
 }
 
-exports.getAllMarca = async () => {
+exports.getByNameOrCreate = async (nome) => {
+  let marca = await Marca.findOne({ where: { nome: nome } });
+  if (!marca) {
+    marca = await Marca.create({ nome: nome })
+  }
+  return marca;
+}
+
+exports.getAll = async () => {
   let marcas = await Marca.findAll();
   return marcas;
 }
 
-exports.createMarca = async (nome) => {
+exports.create = async (nome) => {
   Marca.create({
     nome: nome
-  }).then(marca => {
+  }).then(() => {
     console.log('Marca criada.');
   })
   .catch((e) => {
@@ -29,11 +40,13 @@ exports.createMarca = async (nome) => {
 
 exports.updateMarca = async (marcaToUpdate) => {
   let marca = await Marca.findByPk(marcaToUpdate.id);
-  marca = marcaToUpdate;
-  await marca.save();
+  await marca.update(marcaToUpdate);
 }
 
-exports.deleteMarca = async (id) => {
+exports.deleteById = async (id) => {
   let marca = await Marca.findByPk(id);
-  await marca.destroy();
+  if (!marca) {
+    throw 'Marca não encontrada';
+  }
+  Marca.destroy({ where: { id: id } });
 }

@@ -1,5 +1,4 @@
-const Endereco = require('../database/models/Endereco');
-const Enderecos = require('../database/models/Enderecos');
+const { Endereco, Enderecos } = require('../database/models/index');
 const connection = require('../database/index');
 
 exports.create = async (endereco, clienteId)  => {
@@ -37,13 +36,14 @@ exports.getByClientId = async (id) => {
     {
       replacements: { id: id }
     });
+    
 }
 
-exports.update = async (enderecoToUpdate) => {
+exports.updateEndereco = async (enderecoToUpdate) => {
   let endereco = await Endereco.findByPk(enderecoToUpdate.id);
   await endereco.update(enderecoToUpdate);
 }
 
-exports.delete = async (id) => {
+exports.deleteById = async (id) => {
   await Endereco.destroy({ where: { id: id } });
 }

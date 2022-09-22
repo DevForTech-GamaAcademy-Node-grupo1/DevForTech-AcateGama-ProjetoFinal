@@ -27,18 +27,22 @@ const indexRoute = require('./routes/index-route');
 const produtoRoute = require('./routes/produto-route');
 const marcaRoute = require('./routes/marca-route');
 const contatoRoute = require('./routes/contato-route');
-const enderecoRoute = require('./routes/endereco-route');
 const clienteRoute = require('./routes/cliente-route');
-
+const enderecoRoute = require('./routes/endereco-route');
+const pedidoRoute = require('./routes/pedido.route');
 
 
 //Carrega as Rotas
 app.use('/', indexRoute);
+app.use('/cliente', clienteRoute);
 app.use('/produto', produtoRoute);
 app.use('/marcas', marcaRoute);
-app.use("/contato", contatoRoute);
+app.use('/contato', contatoRoute);
 app.use('/endereco', enderecoRoute);
 app.use('/cliente', clienteRoute);
+app.use('/pedido', pedidoRoute);
+
+
 
 app.get('/sobre', (req,res) => {
     res.render('../views/about');
@@ -79,6 +83,7 @@ app.get('/pedidos-pagina', (req,res) => {
 app.get('/clientes-pagina', (req,res) => {
     res.render('../views/clients');
 });
+
 
 app.listen(port, function () {
     console.log(`app listening on port ${port}`)
