@@ -7,7 +7,18 @@ exports.getById = async (id) => {
 
 exports.getByName = async (nome) => {
   let marca = await Marca.findOne({ where: { nome: nome } });
-  console.log(JSON.stringify(marca));
+  if (!marca) {
+    return null;
+  }
+  console.log(marca);
+  return marca;
+}
+
+exports.getByNameOrCreate = async (nome) => {
+  let marca = await Marca.findOne({ where: { nome: nome } });
+  if (!marca) {
+    marca = await Marca.create({ nome: nome })
+  }
   return marca;
 }
 

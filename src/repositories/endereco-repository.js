@@ -36,6 +36,7 @@ exports.getByClientId = async (id) => {
     {
       replacements: { id: id }
     });
+    
 }
 
 exports.updateEndereco = async (enderecoToUpdate) => {

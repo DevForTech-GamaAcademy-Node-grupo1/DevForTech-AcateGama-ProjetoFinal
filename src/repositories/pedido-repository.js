@@ -1,4 +1,4 @@
-const { Pedido, Pedidos } = require('../database/models/index');
+const { Pedido, Pedidos, Produtos } = require('../database/models/index');
 
 exports.getById = async (id) => {
   let pedido = await Pedido.findByPk(id);
@@ -10,23 +10,31 @@ exports.getAll = async () => {
   return JSON.stringify(pedidos);
 }
 
-exports.create = async (pedido) => {
-  Pedido.create({
+exports.create = async (pedido, produto, clienteId) => {
+  let obj = await Pedido.create({
     valor_total: pedido.valor_total,
     descricao: pedido.descricao,
     status_geral: pedido.status_geral,
     enderecoId: pedido.enderecoId
+  });
+  console.log(obj);
+  console.log(produto);
+  console.log(produto.id);
+  await Produtos.create({
+    pedidoId: obj.id,
+    produtoId: produto.id,
+    quantidade: produto.quantidade
+  }).then(x => {
+    console.log(x)
   })
-    .then(pedido => {
-      Pedidos.create({
-        pedidoId: pedido.id,
-        produtoId: produto.id,
-        quantidade: produto.quantidade
-      })
-    })
     .catch(e => {
-      console.log(e);
-    });
+    console.log(e)
+  })
+  /*
+  await Pedidos.create({
+    pedidoId: obj.id,
+    clienteId: clienteId
+  });*/
 }
 
 exports.updatePedido = async (pedidoToUpdate) => {

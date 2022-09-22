@@ -10,7 +10,7 @@ router.post('/', controller.create);
 
 router.post('/authenticate', controller.authenticate);
 
-router.put('/:id', controller.updateById);
+router.put('/', controller.updateById);
 
 router.get('/id/:id', controller.selectById);
 

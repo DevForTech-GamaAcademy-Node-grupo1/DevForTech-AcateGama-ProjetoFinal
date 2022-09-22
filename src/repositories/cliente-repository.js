@@ -9,8 +9,7 @@ exports.getById = async (id) => {
 
 exports.getByEmail = async (email) => {
   let cliente = await Cliente.findOne({
-    where: { email: email },
-    attributes: { exclude: ['senha'] },
+    where: { email: email }
   });
   console.log(JSON.stringify(cliente));
   return cliente;
@@ -53,9 +52,7 @@ exports.create = async (cliente) => {
 }
 
 exports.updateById = async (clienteToUpdate) => {
-  let cliente = await Cliente.findByPk(clienteToUpdate.id, {
-    attributes: { exclude: ['senha'] },
-  });
+  let cliente = await Cliente.findByPk(clienteToUpdate.id);
   await cliente.update(clienteToUpdate);
 }
 

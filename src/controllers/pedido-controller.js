@@ -7,10 +7,12 @@ exports.create = async (req, res) => {
   pedido.descricao = req.body.descricao;
   pedido.status_geral = req.body.status;
   pedido.enderecoId = req.body.enderecoId;
-  produto.id = req.body.produtoId;
+  produto.id = req.body.id;
   produto.quantidade = req.body.quantidade;
-  
-  pedido_service.create(pedido, produto)
+  console.log(pedido);
+  console.log(produto);
+  //pedido_service.create(pedido, produto, req.session.cliente.id)
+  pedido_service.create(pedido, produto, 6)
     .then(() => {
       res.status(200).json({ message: 'pedido criado' });
     })

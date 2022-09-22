@@ -2,12 +2,12 @@ const { Contato, Contatos } = require('../database/models/index');
 
 exports.getById = async (id) => {
   let contato = await Contato.findByPk(id, { attributes: ["id","numero"], raw :true });
-  return JSON.stringify(contato);
+  return contato;
 }
 
 exports.getAll = async () => {
   let contatos = await Contato.findAll({ attributes: ["id","numero"], raw :true });
-  return JSON.stringify(contatos);
+  return contatos;
 }
 
 exports.create = async (contato, clienteId) => {

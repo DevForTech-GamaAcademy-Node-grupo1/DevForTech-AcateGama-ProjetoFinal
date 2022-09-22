@@ -1,3 +1,4 @@
+const { json } = require('sequelize');
 const contato_repository = require('../repositories/contato-repository');
 
 exports.create = async (contato, clienteId) => {
@@ -10,21 +11,22 @@ exports.deleteById = async (id) => {
     await contato_repository.deleteById(id);
     return;
   }
-  throw 'contato não encontrado';
+  throw { 'message': 'contato não encontrado' };
 }
 
 exports.findAll = async () => {
   let contatos = await contato_repository.getAll();
-  console.log(contatos)
-  return JSON.parse(contatos)
+  console.log(contatos);
+  return contatos;
 }
 
 exports.findById = async (id) => {
   let contato =  await contato_repository.getById(id);
   if (contato) {
-    return JSON.parse(contato);
+    return contato;
   }
   console.log('contato não encontrado');
+  throw {'message':'contato não encontrado'};
 }
 
 exports.updateContato = async (contato) => {

@@ -1,9 +1,9 @@
 const marca_repository = require('../repositories/marca-repository');
 
 exports.create = async (nome) => {
-  if (await marca_repository.getByName(nome) != null) {
+  if (await marca_repository.getByName(nome)) {
     console.log('marca já existe');
-    return;
+    throw { message: 'marca já existe' };
   }
   await marca_repository.create(nome);
 }
@@ -38,7 +38,7 @@ exports.findById = async (id) => {
     return marca;
   }
   console.log('marca não encontrado');
-  return null;
+  throw { 'message': 'marca não encontrado' };
 }
 
 exports.findByName = async (nome) => {
@@ -48,7 +48,7 @@ exports.findByName = async (nome) => {
     return marca;
   }
   console.log('marca não encontrado');
-  return null;
+  throw { 'message': 'marca não encontrado' };
 }
 
 exports.updateMarca = async (marca) => {

@@ -1,8 +1,7 @@
 const contato_service = require('../services/contato-service')
 
 exports.create = async (req, res) => {
-  //contato_service.create(req.body, req.session.cliente.id)
-  contato_service.create(req.body, 1)
+  contato_service.create(req.body, req.session.cliente.id)
     .then(() => {
       res.status(200).json({ message: 'contato criado' });
     }).catch(e => {

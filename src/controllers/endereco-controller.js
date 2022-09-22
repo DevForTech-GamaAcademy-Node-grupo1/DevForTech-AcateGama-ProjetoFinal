@@ -27,8 +27,7 @@ exports.create = async (req, res) => {
   endereco.estado = req.body.estado;
   endereco.cep = req.body.cep;
 
-  endereco_service.create(endereco, 1)
-  //endereco_service.create(endereco, req.session.cliente.id)
+  endereco_service.create(endereco, req.session.cliente.id)
     .then(() => {
       res.status(200).json({ message: 'Endereco criado.' });
     })
