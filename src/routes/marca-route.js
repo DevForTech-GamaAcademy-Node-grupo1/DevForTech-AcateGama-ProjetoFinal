@@ -15,6 +15,6 @@ router.get('/id/:id', controller.selectById);
 
 router.get('/nome/:nome', controller.selectByName);
 
-router.get('/', controller.selectAll);
+router.get('/', adminAuth, controller.selectAll);
 
 module.exports = router;
