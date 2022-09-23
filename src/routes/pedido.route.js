@@ -6,12 +6,12 @@ const adminAuth = require('../middlewares/adminAuth');
 
 router.post('/', controller.create);
 
-router.put('/:id', controller.updateById);
+router.put('/:id', cliehteAuth, controller.updateById);
 
-router.delete('/:id', controller.deleteById);
+router.delete('/:id', cliehteAuth, controller.deleteById);
 
-router.get('/:id', controller.selectById);
+router.get('/:id', cliehteAuth, controller.selectById);
 
-router.get('/', controller.selectAll);
+router.get('/', cliehteAuth, controller.selectAll);
 
 module.exports = router;

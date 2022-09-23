@@ -5,15 +5,16 @@ const cliehteAuth = require('../middlewares/clienteAuth');
 const adminAuth = require('../middlewares/adminAuth');
 const { validateCreate, validateUpdate } = require('../validations/contato/index');
 const handleError = require('../middlewares/handleError');
+const clienteAuth = require('../middlewares/clienteAuth');
 
-router.post('/', controller.create);
+router.post('/', clienteAuth, validateCreate, handleError, controller.create);
 
-router.put('/:id', controller.updateById);
+router.put('/:id', clienteAuth, validateUpdate, handleError, controller.updateById);
 
-router.delete('/:id', controller.deleteById);
+router.delete('/:id', clienteAuth, controller.deleteById);
 
-router.get('/:id', controller.selectById);
+router.get('/:id', clienteAuth, controller.selectById);
 
-router.get('/', controller.selectAll);
+router.get('/', adminAuth, controller.selectAll);
 
 module.exports = router;

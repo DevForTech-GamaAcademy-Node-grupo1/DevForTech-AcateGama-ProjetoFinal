@@ -8,7 +8,7 @@ exports.validateCreate = validate({
     complemento: Joi.string().optional(),
     cidade: Joi.string().required(),
     estado: Joi.string().required(),
-    cep: Joi.string().regex(/^[0-9]{11}$/).required()
+    cep: Joi.string().required()
   })
 });
 
@@ -17,6 +17,6 @@ exports.validateUpdate = validate({
     email: Joi.string().email().optional(),
     senha: Joi.string().optional(),
     nome: Joi.string().optional(),
-    cpf: Joi.string().regex(/^[0-9]{11}$/).optional()
+    cpf: Joi.string().optional()
   })
 });

@@ -3,17 +3,17 @@ const router = express.Router();
 const controller = require('../controllers/marca-controller');
 const adminAuth = require('../middlewares/adminAuth');
 
-router.post('/', controller.create);
+router.post('/', adminAuth, controller.create);
 
-router.put('/:id', controller.updateById);
+router.put('/:id', adminAuth, controller.updateById);
 
-router.delete('/id/:id', controller.deleteById);
+router.delete('/id/:id', adminAuth, controller.deleteById);
 
-router.delete('/nome/:nome', controller.deleteByName);
+router.delete('/nome/:nome', adminAuth, controller.deleteByName);
 
-router.get('/id/:id', controller.selectById);
+router.get('/id/:id', adminAuth, controller.selectById);
 
-router.get('/nome/:nome', controller.selectByName);
+router.get('/nome/:nome', adminAuth, controller.selectByName);
 
 router.get('/', adminAuth, controller.selectAll);
 

@@ -43,50 +43,6 @@ app.use('/cliente', clienteRoute);
 app.use('/pedido', pedidoRoute);
 app.use('/pagamento', pagamentoRoute)
 
-app.get('/sobre', (req,res) => {
-    res.render('../views/about');
-});
-
-app.get('/entrar', (req,res) => {
-    res.render('../views/login');
-});
-
-app.get('/cadastro', (req,res) => {
-    res.render('../views/client-register');
-});
-
-app.get('/contato-pagina', (req,res) => {
-    res.render('../views/contact');
-});
-
-app.get('/pagamento', (req,res) => {
-    res.render('../views/checkout-page');
-});
-
-app.get('/produto-pagina', (req,res) => {
-    res.render('../views/product-page');
-});
-
-app.get('/cadastro-produto', (req,res) => {
-    res.render('../views/product-register');
-});
-
-app.get('/cadastro-pedido', (req,res) => {
-    res.render('../views/request-register');
-});
-
-app.get('/pedidos-pagina', (req,res) => {
-    res.render('../views/requests');
-});
-
-app.get('/clientes-pagina', (req,res) => {
-    res.render('../views/clients');
-});
-
-app.get('/confirmacao-pedido', (req,res) => {
-    res.render('../views/sucess');
-});
-
 app.listen(port, function () {
     console.log(`app listening on port ${port}`)
 });

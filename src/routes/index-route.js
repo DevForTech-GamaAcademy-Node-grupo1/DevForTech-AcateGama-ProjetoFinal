@@ -124,6 +124,50 @@ router.post('/create-pedido', async (req, res) => {
 
 });
 
+router.get('/sobre', (req, res) => {
+    res.render('about');
+});
+
+router.get('/entrar', (req, res) => {
+    res.render('login');
+});
+
+router.get('/cadastro', (req, res) => {
+    res.render('client-register');
+});
+
+router.get('/contato-pagina', (req, res) => {
+    res.render('contact');
+});
+
+router.get('/pagamento', (req, res) => {
+    res.render('checkout-page');
+});
+
+router.get('/produto-pagina', (req, res) => {
+    res.render('product-page');
+});
+
+router.get('/cadastro-produto', (req, res) => {
+    res.render('product-register');
+});
+
+router.get('/cadastro-pedido', (req, res) => {
+    res.render('request-register');
+});
+
+router.get('/pedidos-pagina', (req, res) => {
+    res.render('requests');
+});
+
+router.get('/clientes-pagina', (req, res) => {
+    res.render('clients');
+});
+
+router.get('/confirmacao-pedido', (req, res) => {
+    res.render('sucess');
+});
+
 // router.get('/clientes-pagina', async (req,res) => {
 //     let clientes;
 

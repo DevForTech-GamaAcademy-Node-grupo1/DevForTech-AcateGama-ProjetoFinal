@@ -30,7 +30,7 @@ const Pagamento = connection.define('pagamento', {
 
 (async () => {
     const flag = process.env.APP_MODEL_FORCE == 'false' ? false : true;
-    await Pagamento.sync({ force: true });
+    await Pagamento.sync({ force: flag });
 })();
 
 module.exports = Pagamento;

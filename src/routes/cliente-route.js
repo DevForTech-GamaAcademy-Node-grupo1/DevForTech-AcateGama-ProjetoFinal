@@ -6,26 +6,26 @@ const adminAuth = require('../middlewares/adminAuth');
 const { validateCreate, validateUpdate, validateAuthenticate } = require('../validations/clientes/index');
 const handleError = require('../middlewares/handleError');
 
-router.post('/', controller.create);
+router.post('/', validateCreate, handleError, controller.create);
 
-router.post('/authenticate', controller.authenticate);
+router.post('/authenticate', validateAuthenticate, handleError, controller.authenticate);
 
-router.put('/', controller.updateById);
+router.put('/', cliehteAuth, validateUpdate, handleError, controller.updateById);
 
-router.get('/id/:id', controller.selectById);
+router.get('/id/:id', cliehteAuth, controller.selectById);
 
-router.get('/nome/:nome', controller.selectByName);
+router.get('/nome/:nome', cliehteAuth, controller.selectByName);
 
-router.get('/email/:email', controller.selectByEmail);
+router.get('/email/:email', cliehteAuth, controller.selectByEmail);
 
-router.get('/cpf/:cpf', controller.selectByCPF);
+router.get('/cpf/:cpf', cliehteAuth, controller.selectByCPF);
 
-router.get('/', controller.selectAll);
+router.get('/', cliehteAuth, controller.selectAll);
 
 router.get('/logout', controller.logout);
 
-router.delete('/id/:id', controller.deleteById);
+router.delete('/id/:id', adminAuth, controller.deleteById);
 
-router.delete('/email/:email', controller.deleteByEmail);
+router.delete('/email/:email', adminAuth, controller.deleteByEmail);
 
 module.exports = router;
