@@ -4,12 +4,12 @@ exports.create = async (req, res) => {
   let pedido = {};
   let produto = {};
   pedido.valor_total = req.body.valor_total;
-  pedido.descricao = req.body.descricao;
-  pedido.status_geral = req.body.status;
+  pedido.status_geral = req.body.status_geral;
   pedido.enderecoId = req.body.enderecoId;
   produto.id = req.body.id;
   produto.quantidade = req.body.quantidade;
-  pedido_service.create(pedido, produto, req.session.cliente.id)
+  clienteId = req.body.clienteId;
+  pedido_service.create(pedido, produto, clienteId)
     .then(() => {
       res.status(200).json({ message: 'pedido criado' });
     })

@@ -75,7 +75,6 @@ exports.selectById = async (req, res) => {
 }
 
 exports.selectByName = async (req, res) => {
-  console.log(req.params.nome);
   if (!(req.params.nome != '' && (typeof (req.params.nome) === 'string'))) {
     res.status(400).json({ message: 'formato inválido' });
     return;

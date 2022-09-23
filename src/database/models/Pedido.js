@@ -7,10 +7,6 @@ const Pedido = connection.define('pedido', {
         type: Sequelize.DOUBLE,
         allowNull: false
     },
-    descricao: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     status_geral: {
         type: Sequelize.INTEGER,
         allowNull: false

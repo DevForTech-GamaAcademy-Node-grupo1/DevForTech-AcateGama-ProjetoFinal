@@ -118,7 +118,7 @@ exports.authenticate = async (req, res) => {
         id: cliente.id,
         nome: cliente.nome,
         email: cliente.email,
-        permissao: cliente.permissao
+        permissao: cliente.permissao,
       }
       res.status(202).json({ message: 'Sessão de cliente criada' });
     })

@@ -11,7 +11,10 @@ exports.getByEmail = async (email) => {
   let cliente = await Cliente.findOne({
     where: { email: email }
   });
-  console.log(JSON.stringify(cliente));
+  if (!cliente) {
+    console.log('Cliente não encontrado');
+    return null;
+  }
   return cliente;
 }
 

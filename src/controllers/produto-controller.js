@@ -20,8 +20,6 @@ exports.selectAll = async (req, res) => {
 };
 
 exports.selectById = async (req, res) => {
-  console.log(req.params.id);
-
   try {
     res.status(200).json(await produto_service.findProdutoById(req.params.id));
   }
