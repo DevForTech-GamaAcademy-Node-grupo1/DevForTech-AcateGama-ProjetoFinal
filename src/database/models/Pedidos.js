@@ -25,7 +25,7 @@ const Pedidos = connection.define('pedidos_cliente', {
 
 (async () => {
     const flag = process.env.APP_MODEL_FORCE == 'false' ? false : true;
-    await Pedidos.sync({ force: false });
+    await Pedidos.sync({ force: flag });
 })();
 
 module.exports = Pedidos;

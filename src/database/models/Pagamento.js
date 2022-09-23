@@ -18,14 +18,19 @@ const Pagamento = connection.define('pagamento', {
     tipo_pagamento: {
         type: Sequelize.INTEGER,
         allowNull: false
+    },
+    pedidoId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: Pedido,
+            key: 'id'
+        }
     }
 });
 
-Pagamento.belongsTo(Pedido);
-
 (async () => {
     const flag = process.env.APP_MODEL_FORCE == 'false' ? false : true;
-    await Pagamento.sync({ force: flag });
+    await Pagamento.sync({ force: true });
 })();
 
 module.exports = Pagamento;

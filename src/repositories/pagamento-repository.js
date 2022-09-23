@@ -1,4 +1,4 @@
-const Pagamento = require('../database/models/Pagamento');
+const { Pagamento } = require('../database/models/index');
 
 exports.getPagamentoById = async (id) => {
   let pagamento = await Pagamento.findByPk(id);
@@ -18,7 +18,7 @@ exports.createPagamento = async (dadosPagamento) => {
     status_geral: dadosPagamento.status_geral,
     tipo_pagamento: dadosPagamento.tipo_pagamento
     
-  }).then(Pagamento => {
+  }).then(pagamento => {
     console.log('Pagamento criada.');
   })
   .catch((e) => {

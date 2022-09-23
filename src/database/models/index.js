@@ -3,6 +3,7 @@ const Contato = require('./Contato');
 const Endereco = require('./Endereco');
 const Marca = require('./Marca');
 const Pedido = require('./Pedido');
+const Pagamento = require('./Pagamento');
 const Produto = require('./Produto');
 
 const Contatos = require('./Contatos');
@@ -14,8 +15,13 @@ const Produtos = require('./Produtos');
 Pedido.belongsTo(Endereco, {
   foreignKey: 'enderecoId'
 });
+
 Produto.belongsTo(Marca, {
   foreignKey: 'marcaId'
+});
+
+Pagamento.belongsTo(Pedido, {
+  foreignKey: 'pedidoId'
 });
 
 //Relação cliente x contatos
@@ -88,6 +94,7 @@ module.exports = {
   Marca,
   Pedido,
   Pedidos,
+  Pagamento,
   Produto,
   Produtos
 }

@@ -27,7 +27,7 @@ const Favoritos = connection.define('favoritos', {
 
 (async () => {
     const flag = process.env.APP_MODEL_FORCE == 'false' ? false : true;
-    await Favoritos.sync({ force: false });
+    await Favoritos.sync({ force: flag });
 })();
 
 module.exports = Favoritos;
