@@ -32,22 +32,22 @@
    <div class="main">
       <div class="col-md-6 col-sm-12 mt-5 pt-3">
          <div class="login-form">
-            <form action="/produto/">
+            <form action="/produto" method="post">
                <div class="form-group">
                   <label>Nome do produto</label>
-                  <input type="text" class="form-control" placeholder="Digite nome do produto">
+                  <input type="text" class="form-control" placeholder="Digite nome do produto" name="nome">
                </div>
                <div class="form-group">
                   <label>Valor</label>
-                  <input type="number" class="form-control" placeholder="Digite valor">
+                  <input type="number" class="form-control" placeholder="Digite valor" name="valor">
                </div>
                <div class="form-group">
                 <label>Quantidade</label>
-                <input type="text" class="form-control" placeholder="Digite quantidade em estoque do produto">
+                <input type="text" class="form-control" placeholder="Digite quantidade em estoque do produto" name="quantidade">
              </div>
              <div class="form-group">
               <label>Modelo</label>
-              <input type="text" class="form-control" placeholder="Digite modelo do produto">
+              <input type="text" class="form-control" placeholder="Digite modelo do produto" name="modelo">
              </div>
                <button type="submit" class="btn btn-secondary">Cadastrar Produto</button>
             </form>

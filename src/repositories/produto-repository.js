@@ -16,7 +16,7 @@ async function getProdutoByName(nome) {
 
 async function getAllProduto(size, offset, order, col) {
   let produtos = await Produto.findAll(
-    { attributes: ["nome", "quantidade", "valor"], include: [{ model: Marca, attributes: ["id", "nome"] }], order: [[col, order]], limit: size, offset: offset });
+    { attributes: ["id","nome", "quantidade", "valor"], include: [{ model: Marca, attributes: ["id", "nome"] }], order: [[col, order]], limit: size, offset: offset });
 
   return produtos;
 }

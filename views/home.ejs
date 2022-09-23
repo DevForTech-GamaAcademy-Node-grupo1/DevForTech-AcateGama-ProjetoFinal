@@ -74,14 +74,13 @@
 
       <!--Section: Products v.3-->
       <section class="text-center mb-4">
-
+        <a href="/produto-pagina"></a>
         <!--Grid row-->
         <div class="row wow fadeIn">
 
           <% products.forEach(function(product) { %>
           <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">
-            <a href="http://localhost:3333/produto-pagina">
+          <div class="col-lg-3 col-md-6 mb-4">            
             <!--Card-->
             <div class="card">
 
@@ -102,15 +101,18 @@
                 </a>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text"><%= product.modelo %>
-                      <span class="badge badge-pill danger-color">NEW</span>
-                    </a>
+                    <a href="" class="dark-grey-text"><%= product.modelo %>                      
                   </strong>
                 </h5>
 
                 <h4 class="font-weight-bold blue-text">
-                  <strong>R$<%= product.valor %></strong>
+                  <strong>R$<%= product.valor %></strong>                 
                 </h4>
+
+                <h3>
+                  <a id="produto-pagina"  class="badge badge-pill danger-color"  href='/produto-pagina/<%= product.id %>'>Conferir</a>
+                </h3>
+
 
               </div>
               <!--Card content-->
@@ -123,7 +125,6 @@
 
         </div>
         <!--Grid row-->
-
       </section>
       <!--Section: Products v.3-->
 

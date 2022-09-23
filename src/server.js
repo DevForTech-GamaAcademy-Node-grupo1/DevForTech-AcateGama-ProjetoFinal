@@ -84,6 +84,11 @@ app.get('/clientes-pagina', (req,res) => {
     res.render('../views/clients');
 });
 
+app.get('/confirmacao-pedido', (req,res) => {
+    res.render('../views/sucess');
+});
+
+
 app.listen(port, function () {
     console.log(`app listening on port ${port}`)
 });
