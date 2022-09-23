@@ -20,7 +20,7 @@ router.get('/email/:email', cliehteAuth, controller.selectByEmail);
 
 router.get('/cpf/:cpf', cliehteAuth, controller.selectByCPF);
 
-router.get('/', cliehteAuth, controller.selectAll);
+router.get('/', adminAuth, controller.selectAll);
 
 router.get('/logout', controller.logout);
 
