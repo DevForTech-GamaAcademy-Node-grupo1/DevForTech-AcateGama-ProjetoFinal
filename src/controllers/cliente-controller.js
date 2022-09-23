@@ -6,8 +6,7 @@ exports.create = async (req, res) => {
   cliente.senha = req.body.senha;
   cliente.nome = req.body.nome;
   cliente.cpf = req.body.cpf;
-  console.log(req.body);
-  console.log(cliente);
+
   cliente_service.create(cliente)
     .then(() => {
       res.status(200).json({ message: 'Cliente criado' });
@@ -119,7 +118,7 @@ exports.authenticate = async (req, res) => {
         id: cliente.id,
         nome: cliente.nome,
         email: cliente.email,
-        permissao: cliente.permissao
+        permissao: cliente.permissao,
       }
       res.status(202).json({ message: 'Sessão de cliente criada' });
     })

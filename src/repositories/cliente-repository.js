@@ -13,9 +13,8 @@ exports.getByEmail = async (email) => {
   });
   if (!cliente) {
     console.log('Cliente não encontrado');
-    throw { message: 'Cliente não encontrado' };
+    return null;
   }
-  console.log(cliente);
   return cliente;
 }
 

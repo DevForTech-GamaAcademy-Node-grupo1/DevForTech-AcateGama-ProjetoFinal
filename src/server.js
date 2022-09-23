@@ -4,9 +4,9 @@ const app = express();
 const port = process.env.APP_PORT || 3333;
 const http = require('http');
 const axios = require('axios');
+const path = require('path');
 app.use(express.static('public'));
-
-
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine','ejs');
 const session = require('express-session');
 

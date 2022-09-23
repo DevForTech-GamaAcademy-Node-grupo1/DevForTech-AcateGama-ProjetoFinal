@@ -45,5 +45,15 @@ exports.updateEndereco = async (enderecoToUpdate) => {
 }
 
 exports.deleteById = async (id) => {
-  await Endereco.destroy({ where: { id: id } });
+  Enderecos.destroy({
+    where: {
+      enderecoId: id
+    } 
+  })
+    .then(async () => {
+      await Endereco.destroy({ where: { id: id } });
+    })
+    .catch(e => {
+      console.log(e);
+    })
 }

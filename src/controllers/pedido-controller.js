@@ -8,7 +8,8 @@ exports.create = async (req, res) => {
   pedido.enderecoId = req.body.enderecoId;
   produto.id = req.body.id;
   produto.quantidade = req.body.quantidade;
-  pedido_service.create(pedido, produto, 2)
+  clienteId = req.body.clienteId;
+  pedido_service.create(pedido, produto, clienteId)
     .then(() => {
       res.status(200).json({ message: 'pedido criado' });
     })

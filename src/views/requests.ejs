@@ -5,21 +5,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Página inicial</title>
+  <title>Painel de controle - PEDIDOS</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="../css/mdb.min.css" rel="stylesheet">
+  <link href="/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="../css/style.min.css" rel="stylesheet">
+  <link href="/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
 
   <!-- Navbar -->
-  <%- include('./navbar'); %>
+  <%- include('./navbar-admin'); %>
   <!-- Navbar -->
 
   <!--Main layout-->
@@ -30,7 +30,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
         <!-- Navbar brand -->
-        <span class="navbar-brand">Marca:</span>
+        <span class="navbar-brand">Categoria:</span>
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -44,18 +44,15 @@
           <!-- Links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Tudo
+              <a class="nav-link" href="#">Todos
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Esporte</a>
+              <a class="nav-link" href="#">Valor</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Trilha</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Casual</a>
+              <a class="nav-link" href="#">Status</a>
             </li>
 
           </ul>
@@ -74,22 +71,24 @@
 
       <!--Section: Products v.3-->
       <section class="text-center mb-4">
-        <a href="/produto-pagina"></a>
+
         <!--Grid row-->
         <div class="row wow fadeIn">
 
-          <% products.forEach(function(product) { %>
+          <% requests.forEach(function(request) { %>
           <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4">            
+          <div class="col-lg-3 col-md-6 mb-4">
+
             <!--Card-->
             <div class="card">
 
               <!--Card image-->
               <div class="view overlay">
-                <img src="https://static.netshoes.com.br/produtos/bota-bradok-eldorado-good-yellow/30/QXE-0219-030/QXE-0219-030_zoom1.jpg?ts=1663156034&ims=544x" height="200px" class="card-img-top"
+                <img src="https://img.freepik.com/free-vector/taking-orders-by-phone-store-contact-center-customers-support-easy-order-fast-delivery-trade-service-call-center-operator-cartoon-character_335657-2564.jpg?w=740&t=st=1663808768~exp=1663809368~hmac=3d0b8d88afb7b77b1bef3b5797394f24622403f3baad4e91f8b7b9e550659142" height="200px" class="card-img-top"
                   alt="">
                 <a>
                   <div class="mask rgba-white-slight"></div>
+                </a>
               </div>
               <!--Card image-->
 
@@ -97,22 +96,18 @@
               <div class="card-body text-center">
                 <!--Category & Title-->
                 <a href="" class="grey-text">
-                  <h5><%= product.nome %></h5>
+                  <h5><%= request.descricao%></h5>
                 </a>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text"><%= product.modelo %>                      
+                    <a href="" class="dark-grey-text"><%= request.status_geral %>
+                    </a>
                   </strong>
                 </h5>
 
                 <h4 class="font-weight-bold blue-text">
-                  <strong>R$<%= product.valor %></strong>                 
+                  <strong>R$<%= request.valor_total %></strong>
                 </h4>
-
-                <h3>
-                  <a id="produto-pagina"  class="badge badge-pill danger-color"  href='/produto-pagina/<%= product.id %>'>Conferir</a>
-                </h3>
-
 
               </div>
               <!--Card content-->
@@ -125,6 +120,7 @@
 
         </div>
         <!--Grid row-->
+
       </section>
       <!--Section: Products v.3-->
 
@@ -178,13 +174,13 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <script type="text/javascript" src="/js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <script type="text/javascript" src="/js/mdb.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization

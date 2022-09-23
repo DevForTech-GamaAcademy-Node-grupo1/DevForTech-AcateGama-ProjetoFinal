@@ -2,9 +2,10 @@ const cliente_repository = require('../repositories/cliente-repository');
 const bcrypt = require('bcryptjs');
 
 exports.create = async (cliente) => {
-  if (await cliente_repository.getByEmail(cliente.email) != null) {
+  let result = await cliente_repository.getByEmail(cliente.email)
+  if (result) {
     console.log('cliente já existe');
-    return;
+    throw 'Cliente já existe';
   }
   let salt = bcrypt.genSaltSync(10);
   cliente.senha = bcrypt.hashSync(cliente.senha, salt);
@@ -15,11 +16,21 @@ exports.create = async (cliente) => {
 }
 
 exports.deleteById = async (id) => {
-  if (await cliente_repository.getById(id)) {
-    await cliente_repository.deleteById(id);
-    return;
+  let result = await cliente_repository.getById(id);
+  if (!result) {
+    console.log('Cliente não encontrado');
+    throw { message: 'Cliente não encontrado' };
   }
-  console.log('Cliente não encontrado');
+  await cliente_repository.deleteById(id);
+}
+
+exports.deleteByEmail = async (email) => {
+  let cliente = await cliente_repository.getByEmail(email);
+  if (!cliente) {
+    console.log('Cliente não encontrado');
+    throw { message: 'Cliente não encontrado' };
+  }
+  await cliente_repository.deleteById(cliente.id);
 }
 
 exports.authenticateByEmail = async (clienteToAuthenticate) => {
@@ -29,16 +40,7 @@ exports.authenticateByEmail = async (clienteToAuthenticate) => {
     throw 'E-mail ou senha incorretos';
   }
   console.log('Cliente logado');
-  return JSON.parse(JSON.stringify(cliente));
-}
-
-exports.deleteByEmail = async (email) => {
-  let cliente = await cliente_repository.getByEmail(email);
-  if (cliente) {
-    await cliente_repository.deleteById(cliente.id);
-    return;
-  }
-  console.log('Cliente não encontrado');
+  return cliente;
 }
 
 exports.findAll = async ()  => {
@@ -88,5 +90,10 @@ exports.findByCPF = async (cpf)  => {
 }
 
 exports.updateById = async (cliente) => {
+  let result = await cliente_repository.getById(cliente.id);
+  if (!result) {
+    console.log('Cliente não encontrado');
+    throw { message: 'Cliente não encontrado' };
+  }
   await cliente_repository.updateById(cliente);
 }

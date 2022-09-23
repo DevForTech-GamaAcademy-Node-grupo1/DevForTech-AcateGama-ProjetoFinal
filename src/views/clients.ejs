@@ -5,15 +5,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Painel de controle - PEDIDOS</title>
+  <title>Painel de controle - CLIENTES </title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="../css/mdb.min.css" rel="stylesheet">
+  <link href="/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="../css/style.min.css" rel="stylesheet">
+  <link href="/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -49,10 +49,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Valor</a>
+              <a class="nav-link" href="#">Nome</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Status</a>
+              <a class="nav-link" href="#">E-mail</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CPF</a>
             </li>
 
           </ul>
@@ -75,7 +78,7 @@
         <!--Grid row-->
         <div class="row wow fadeIn">
 
-          <% requests.forEach(function(request) { %>
+          <% clients.forEach(function(client) { %>
           <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4">
 
@@ -84,7 +87,7 @@
 
               <!--Card image-->
               <div class="view overlay">
-                <img src="https://img.freepik.com/free-vector/taking-orders-by-phone-store-contact-center-customers-support-easy-order-fast-delivery-trade-service-call-center-operator-cartoon-character_335657-2564.jpg?w=740&t=st=1663808768~exp=1663809368~hmac=3d0b8d88afb7b77b1bef3b5797394f24622403f3baad4e91f8b7b9e550659142" height="200px" class="card-img-top"
+                <img src="https://img.freepik.com/vetores-premium/perfil-de-avatar-de-mulher-no-icone-redondo_24640-14042.jpg?w=740" height="200px" class="card-img-top"
                   alt="">
                 <a>
                   <div class="mask rgba-white-slight"></div>
@@ -96,17 +99,17 @@
               <div class="card-body text-center">
                 <!--Category & Title-->
                 <a href="" class="grey-text">
-                  <h5><%= request.descricao%></h5>
+                  <h5><%= client.nome %></h5>
                 </a>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text"><%= request.status_geral %>
+                    <a href="" class="dark-grey-text"><%= client.email %>
                     </a>
                   </strong>
                 </h5>
 
                 <h4 class="font-weight-bold blue-text">
-                  <strong>R$<%= request.valor_total %></strong>
+                  <strong>CPF:<%= client.cpf %></strong>
                 </h4>
 
               </div>
@@ -174,13 +177,13 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <script type="text/javascript" src="/js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <script type="text/javascript" src="/js/mdb.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
