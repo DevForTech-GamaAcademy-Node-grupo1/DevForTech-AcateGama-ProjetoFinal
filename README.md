@@ -20,5 +20,5 @@ Requisitos: Conhecimentos e experiência em lógica de programação, Banco de d
 <a href="https://github.com/jefferson-dantonio"> Jefferson D'Antonio Malaquias </a><br>
 <a href="https://github.com/josalesmj"> Jó Sales </a><br>
 <a href="https://github.com/JulianaMariaSousaMesquita"> Juliana Mesquita</a><br>
-<a href="https://github.com/MeneMateus/"> Matheus </a><br>
-<a href="https://github.com/vagnerbruno85/"> Vagner </a><br>
+<a href="https://github.com/MeneMateus/"> Matheus Menezes</a><br>
+<a href="https://github.com/vagnerbruno85/"> Vagner Batista</a><br>
